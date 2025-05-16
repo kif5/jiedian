@@ -315,7 +315,7 @@ def write_clash_meta_profile(template_file, output_file, extracted_proxies):
     else:
         profile['proxies'].extend(extracted_proxies)
     for group in profile['proxy-groups']:
-        if(group['name'] in ['🚀 节点选择','♻️ 自动选择','⚖ 负载均衡','☁ WARP前置节点','📺 巴哈姆特','📺 哔哩哔哩','🌏 国内媒体','🌍 国外媒体','📲 电报信息','Ⓜ️ 微软云盘','Ⓜ️ 微软服务','🍎 苹果服务','📢 谷歌FCM','🤖 OpenAI','🐟 漏网之鱼']):
+        if(group['name'] in ['🚀 节点选择','♻️ 自动选择','⚖ 负载均衡','☁ WARP前置节点','📺 巴哈姆特','📺 哔哩哔哩','🌏 国内媒体','🌍 国外媒体','📲 电报信息','Ⓜ️ 微软云盘','Ⓜ️ 微软服务','🍎 苹果服务','📢 谷歌FCM','🤖 OpenAI','🐟 漏网之鱼','🌍 选择代理','手动选择','自动选择']):
             if("proxies" not in group or not group['proxies']):
                 group['proxies'] = [proxy['name'] for proxy in extracted_proxies]
             else:
@@ -509,7 +509,9 @@ if __name__ == "__main__":
     # logging.info(servers_list)
 
     # # 写入clash meta配置
+    write_clash_meta_profile("./templates/clash_meta_geo.yaml", "./outputs/clash_meta_geo.yaml", extracted_proxies)
     write_clash_meta_profile("./templates/clash_meta.yaml", "./outputs/clash_meta.yaml", extracted_proxies)
+    write_clash_meta_profile("./templates/data.yaml", "./outputs/data.yaml", extracted_proxies)
     write_clash_meta_profile("./templates/clash_meta_warp.yaml", "./outputs/clash_meta_warp.yaml", extracted_proxies)
 
     # 写入代理urls
